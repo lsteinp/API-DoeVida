@@ -71,3 +71,5 @@ typings/
 .idea/new-fluxo-api.iml
 .idea/vcs.xml
 .idea/workspace.xml
+
+lib

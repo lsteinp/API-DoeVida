@@ -1,0 +1,433 @@
+{
+	"info": {
+		"_postman_id": "2ac89e1e-cdf0-40cb-970d-3eae7f2658fa",
+		"name": "Modelo Postman Arquitetura",
+		"description": "Este é o modelo das rotas do exemplo de arquitetura de uma API na AGES.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "394ff4a7-0228-426d-9521-975a45d87a2e",
+								"exec": [
+									"//Modifica o token do environment para que não seja necessário atualizá-lo em cada requisição",
+									"let jsonData = JSON.parse(responseBody)",
+									"pm.environment.set('token', jsonData.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"name\",\n\t\"email\" : \"email@doevida.com\",\n\t\"token\": \"token\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "O post com o Username e Senha feitos à API para receber o token."
+					},
+					"response": []
+				}
+			],
+			"description": "A rota relacionada ao login. Não requer nenhum token de autenticação, justamente por ser rota utilizada para conseguir tal token. ",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GET Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/users?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "contains",
+									"value": "teste3",
+									"description": "Filtra em todos os campos pela string informada",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "name",
+									"description": "Ordenar pelo nome do campo na tabela de Usuários",
+									"disabled": true
+								},
+								{
+									"key": "isAscending",
+									"value": "false",
+									"description": "Define se a ordenação é ascendente ou descendente",
+									"disabled": true
+								}
+							]
+						},
+						"description": "O GET para retornar um usuário específico do banco."
+					},
+					"response": []
+				},
+				{
+					"name": "GET User by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/users/<id>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"<id>"
+							]
+						},
+						"description": "O GET para retornar um usuário específico do banco."
+					},
+					"response": []
+				},
+				{
+					"name": "PUT User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 14,\n    \"name\": \"testeedicao\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "O GET para retornar um usuário específico do banco."
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users/<id>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"<id>"
+							]
+						},
+						"description": "O GET para retornar um usuário específico do banco."
+					},
+					"response": []
+				},
+				{
+					"name": "user by email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/email/<email>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"email",
+								"<email>"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Todas as rotas relacionadas ao CRUD da tabela de usuários.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DonationEntity",
+			"item": [
+				{
+					"name": "DonationEntity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/donationEntity?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"donationEntity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DonationEntity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "394ff4a7-0228-426d-9521-975a45d87a2e",
+								"exec": [
+									"//Modifica o token do environment para que não seja necessário atualizá-lo em cada requisição",
+									"let jsonData = JSON.parse(responseBody)",
+									"pm.environment.set('token', jsonData.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"HTCPA - Hospital da Lariça\",\n\t\"address\": {\n\t\t\"street\": \"R. Ramiro Barcelos\",\n\t\t\"number\": 2350,\n\t\t\"district\": \"Santa Cecilia\",\n\t\t\"city\": \"Porto Alegre\",\n\t\t\"state\": \"Rio Grande do Sul\",\n\t\t\"country\": \"Brasil\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/donationEntity",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"donationEntity"
+							]
+						},
+						"description": "O post com o Username e Senha feitos à API para receber o token."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Campaign",
+			"item": [
+				{
+					"name": "campaign",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/campaign?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"campaign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "394ff4a7-0228-426d-9521-975a45d87a2e",
+								"exec": [
+									"//Modifica o token do environment para que não seja necessário atualizá-lo em cada requisição",
+									"let jsonData = JSON.parse(responseBody)",
+									"pm.environment.set('token', jsonData.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\":\"5e94f8a1e59f78854bbfc363\",\n\t\"donationEntityId\":\"5ea8d78fca9b246af6b8bbf9\",\n\t\"receiverName\":\"Z Maguinho\",\n\t\"bloodType\":\"B_NEGAIVE\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/campaign",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"campaign"
+							]
+						},
+						"description": "O post com o Username e Senha feitos à API para receber o token."
+					},
+					"response": []
+				},
+				{
+					"name": "campaign by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/campaign/<id>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"campaign",
+								"<id>"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "campaigns by userId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/campaign/myCampaigns/<userId>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"campaign",
+								"myCampaigns",
+								"<userId>"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DonationEntity by addressId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/donationEntity/<addressId>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"donationEntity",
+								"<addressId>"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
