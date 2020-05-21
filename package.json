@@ -1,0 +1,27 @@
+{
+  "name": "node-sequelize-model",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "consign": "^0.1.6",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "express": "^4.16.3",
+    "finale-rest": "^0.1.5",
+    "fs": "0.0.1-security",
+    "http-errors": "~1.6.2",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.2.13",
+    "morgan": "~1.9.0",
+    "mysql2": "^1.5.3",
+    "path": "^0.12.7",
+    "restify": "^7.1.0",
+    "sha256": "^0.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
