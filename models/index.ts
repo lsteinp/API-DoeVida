@@ -7,6 +7,7 @@ import userSchema from './users'
 import donationEntitySchema from './donationEntity'
 import addressSchema from './address'
 import campaignSchema from './campaign'
+import donationRegistrySchema from './donationRegistry'
 
 const { db: { host, port } } = config
 const connectionString = `mongodb://${host}:${port}/`
@@ -31,6 +32,7 @@ const models = {
   DonationEntity: mongoose.model('DonationEntity', donationEntitySchema),
   Address: mongoose.model('Address', addressSchema),
   Campaign: mongoose.model('Campaign', campaignSchema),
+  DonationRegistry: mongoose.model('DonationRegistry', donationRegistrySchema)
 }
 
 export default models
