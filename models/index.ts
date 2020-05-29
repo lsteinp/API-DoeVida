@@ -9,7 +9,8 @@ import addressSchema from './address'
 import campaignSchema from './campaign'
 
 const { db: { host, port } } = config
-const connectionString = `mongodb://${host}:${port}/`
+// const connectionString = `mongodb://${host}:${port}/`
+const connectionString = 'mongodb+srv://test-doevida:lXBiujAdYmsWANvq@test-doevida-wtgdu.mongodb.net/test?retryWrites=true&w=majority'
 
 mongoose.connect(connectionString, config.mongoose).then(
   () => {

@@ -9,6 +9,8 @@ export interface Address extends Document {
   city: string;
   state: string;
   country: string;
+  latitude: number;
+  longitude: number;
 }
 
 const schema: Schema = new Schema({
@@ -19,6 +21,8 @@ const schema: Schema = new Schema({
   city: { type: String, unique: false, required: true },
   state: { type: String, unique: false, required: true },
   country: { type: String, unique: false, required: true },
+  latitude: { type: Number, unique: false, required: true },
+  longitude: { type: Number, unique: false, required: true },
 }, { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } })
 
 schema.virtual('id').get(function (this: Address) {

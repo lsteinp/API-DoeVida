@@ -13,7 +13,9 @@ export interface AddDonationEntityDTO {
     city: string;
     state: string;
     country: string;
-  };
+    latitude: number;
+    longitude: number;
+  }
 }
 
 export default class DonationEntityDAO {
