@@ -9,6 +9,8 @@ export interface AddressDTO {
   city: string;
   state: string;
   country: string;
+  latitude: number;
+  longitude: number;
 }
 
 export default class AddressDAO {

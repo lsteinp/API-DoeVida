@@ -14,6 +14,10 @@ const address = Joi.object().keys({
   .required(),
   country: Joi.string()
   .required(),
+  latitude: Joi.number()
+  .required(),
+  longitude: Joi.number()
+  .required(),
 })
 
 export const donationEntitychema = Joi.object({
