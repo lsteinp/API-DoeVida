@@ -11,6 +11,10 @@
     "lint": "eslint './**/*.ts'",
     "lint:fix": "eslint --fix './**/*.ts'"
   },
+  "engines": {
+    "node": "12.10.0",
+    "npm": "6.11.3"
+  },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "@types/hapi__joi": "^16.0.12",
