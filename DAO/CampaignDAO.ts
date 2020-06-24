@@ -30,7 +30,12 @@ export default class CampaignDAO {
       const data = await this.campaignModel
         .find(custom)
         .populate('userId')
-        .populate('donationEntityId')
+        .populate({
+          path : 'donationEntityId',
+          populate : {
+            path : 'addressId'
+          }
+        })
         .exec()
 
       return { data, errorObj: null }
@@ -47,7 +52,12 @@ export default class CampaignDAO {
           userId: userId
         })
         .populate('userId')
-        .populate('donationEntityId')
+        .populate({
+          path : 'donationEntityId',
+          populate : {
+            path : 'addressId'
+          }
+        })
         .exec()
 
       return { data, errorObj: null }
@@ -64,7 +74,12 @@ export default class CampaignDAO {
           _id: campaignId
         })
         .populate('userId')
-        .populate('donationEntityId')
+        .populate({
+          path : 'donationEntityId',
+          populate : {
+            path : 'addressId'
+          }
+        })
         .exec()
 
       return { data, errorObj: null }
