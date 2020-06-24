@@ -58,7 +58,8 @@ const production = {
 
 const config = {
   dev,
-  test
+  test,
+  production
 }
 // @ts-ignore
 export default config[NODE_ENV]
