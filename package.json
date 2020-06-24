@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": "12.10.0",
-    "npm": "6.11.3"
+    "node": "12.x"
   },
   "scripts": {
     "start": "ts-node ./app.ts",
