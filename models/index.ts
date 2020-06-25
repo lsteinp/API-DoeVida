@@ -10,7 +10,7 @@ import campaignSchema from './campaign'
 
 const { db: { host, port } } = config
 // const connectionString = `mongodb://${host}:${port}/`
-const connectionString = 'mongodb+srv://test-doevida:lXBiujAdYmsWANvq@test-doevida-wtgdu.mongodb.net/test?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://doevida:DHylJWTm1ZuYdwll@bd-doevida-egfdq.mongodb.net/<dbname>?retryWrites=true&w=majority'
 
 mongoose.connect(connectionString, config.mongoose).then(
   () => {
