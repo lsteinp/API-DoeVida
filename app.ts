@@ -20,7 +20,7 @@ function setupServer(): void {
   app.use('/api/campaign', /*TokenManager.ensureUserToken,*/ routerCampaign)
   app.use('/api/privacyPolicy', /*TokenManager.ensureUserToken,*/ routerPrivacyPolicy)
 
-  app.listen(config.app.port || 4000, function () {
+  app.listen(process.env.PORT || config.app.port, function () {
     console.log(`Server listening on port ${config.app.port}`)
   })
 }
