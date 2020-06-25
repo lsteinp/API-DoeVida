@@ -36,12 +36,30 @@ const test = {
 }
 
 const production = {
-
+  app: {
+    port: HTTP_PORT,
+  },
+  db: {
+    host: DB_HOST,
+    port: DB_PORT,
+  },
+  mongoose: { // https://mongoosejs.com/docs/connections.html
+    useNewUrlParser: true,
+    user: DB_USERNAME,
+    pass: DB_PASSWORD,
+    dbName: DB_DATABASE,
+    poolSize: DB_POOL_SIZE,
+  },
+  settings: {
+    logging: true,
+    useCreateIndex: true,
+  }
 }
 
 const config = {
   dev,
-  test
+  test,
+  production
 }
 // @ts-ignore
 export default config[NODE_ENV]
