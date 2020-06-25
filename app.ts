@@ -10,6 +10,7 @@ import routerPrivacyPolicy from './routes/privacyPolicy'
 import config from './config/config'
 
 function setupServer(): void {
+  const PORT = process.env.PORT || 3000;
   const app = express()
 
   app.use(cors())
@@ -20,8 +21,8 @@ function setupServer(): void {
   app.use('/api/campaign', /*TokenManager.ensureUserToken,*/ routerCampaign)
   app.use('/api/privacyPolicy', /*TokenManager.ensureUserToken,*/ routerPrivacyPolicy)
 
-  app.listen(process.env.PORT || config.app.port, function () {
-    console.log(`Server listening on port ${config.app.port}`)
+  app.listen(PORT || config.app.port, function () {
+    console.log(`Server listening on port ${PORT}`)
   })
 }
 
